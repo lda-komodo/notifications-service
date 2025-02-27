@@ -1,0 +1,11 @@
+version: '3.8'
+name: 'notifications-service'
+services:
+  kafka:
+    image: bitnami/kafka:3.6.1
+    container_name: kafka
+    env_file:
+      - docker-env
+    ports:
+      - "9092:9092"
+      - "9094:9094"
