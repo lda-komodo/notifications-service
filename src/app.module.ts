@@ -1,19 +1,20 @@
 import { Module } from '@nestjs/common';
-import {ConfigModule} from "@nestjs/config";
-import {InfrastructureModule} from "./infrastructure/infrastructure.module";
-import {InAdaptersModule} from "./adapters/in/in.module";
-import {AdaptersModule} from "./adapters/adapters.module";
-import {SharedModule} from "./shared/shared.module";
+import { ConfigModule } from '@nestjs/config';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
+import { InAdaptersModule } from './adapters/in/in.module';
+import { OutAdaptersModule } from './adapters/out/out.module';
+import { ApplicationModule } from './core/application/application.module';
+import { DomainModule } from './core/domain/domain.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: false }),
+    ConfigModule.forRoot({ isGlobal: true }),
     InfrastructureModule,
-    AdaptersModule
-    /*
-    CoreModule,
-     */
+    InAdaptersModule,
+    OutAdaptersModule,
+    ApplicationModule,
+    DomainModule,
   ],
-  exports: [InfrastructureModule, AdaptersModule],
 })
-export class AppModule {}
+export class AppModule {
+}

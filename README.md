@@ -101,10 +101,10 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 ## Kafka consumers(suscribers)
 ```text
 [Kafka Topic] --> [GameEventConsumer] --> [ProcessGameEventUseCase]
-                                  |
-                                  |---> [IdempotencyService]
-                                  |        |
-                                  |        |---> [RedisIdempotencyRepository]
-                                  |
-                                  |---> [NotificationService]
-```
+                                                     |
+                                                     |---> [IdempotencyService]
+                                                     |        |
+                                                     |        |---> [RedisIdempotencyRepository]
+                                                     |
+                                                     |---> [NotificationService]
+```                   

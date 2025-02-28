@@ -1,11 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import { KafkaModule } from './infrastructure/kafka/kafka.module';
+
+const logger = new Logger('Bootstrap');
 
 async function bootstrap() {
-  const logger = new Logger('Bootstrap');
-
   const app = await NestFactory.create(AppModule);
 
   const kafkaConfigService = app.get('KAFKA_SERVICE');
@@ -19,4 +18,6 @@ async function bootstrap() {
   logger.log(`HTTP server is running on http://localhost:${port}`);
 }
 
-bootstrap().then(() => {});
+bootstrap().then(() => {
+  logger.log('Up and running');
+});

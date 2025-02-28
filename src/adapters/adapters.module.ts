@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { InAdaptersModule } from './in/in.module';
-import { OutModule } from './out/out.module';
+import { OutAdaptersModule } from './out/out.module';
 
 @Module({
-  imports: [InAdaptersModule, OutModule],
-  exports: [InAdaptersModule, OutModule],
+  imports: [InAdaptersModule, OutAdaptersModule],
+  exports: [InAdaptersModule, OutAdaptersModule],
 })
-export class AdaptersModule {}
+export class AdaptersModule {
+}

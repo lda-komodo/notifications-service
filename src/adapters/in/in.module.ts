@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { KafkaConsumerModule } from './kafka/kafka-consumer.module';
-import {InfrastructureModule} from "../../infrastructure/infrastructure.module";
+import { InfrastructureModule } from '../../infrastructure/infrastructure.module';
+import { ApplicationModule } from '../../core/application/application.module';
+import { DomainModule } from '../../core/domain/domain.module';
+import { GameEventController } from './kafka/controllers/game-event.controller';
+import { SocialEventController } from './kafka/controllers/social-event.controller';
 
 @Module({
-  imports: [KafkaConsumerModule, InfrastructureModule],
-  providers: [],
+  imports: [InfrastructureModule, ApplicationModule, DomainModule],
+  controllers: [GameEventController, SocialEventController],
 })
-export class InAdaptersModule {}
+export class InAdaptersModule {
+}

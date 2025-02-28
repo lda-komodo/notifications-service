@@ -1,21 +1,19 @@
 export type BaseEvent = {
-    id: string;
-    eventPayload: GameLevelUpEvent | GameItemAcquiredEvent;
-    timestamp: string;
-}
+  messageId: string;
+  userId: string;
+  timestamp: string;
+};
 
-export type GameLevelUpEvent = {
-    newLevel: number;
-}
+export type GameLevelUpEvent = BaseEvent & {
+  newLevel: number;
+};
 
-export type GameItemAcquiredEvent = {
-    itemName: string;
-}
+export type GameItemAcquiredEvent = BaseEvent & {
+  itemName: string;
+};
 
-export type SocialFriendRequestEvent = {
-    fromUserId: string;
-    toUserId: string;
-}
+export type SocialFriendRequestEvent = BaseEvent & {
+  toUserId: string;
+};
 
 export type SocialFriendRequestAcceptedEvent = SocialFriendRequestEvent;
-
