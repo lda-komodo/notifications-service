@@ -3,10 +3,10 @@ import { EventType } from '../events/event-type.enum';
 
 export const MessageTemplates: Record<EventType, MessageTemplateMapper> = {
   [EventType.PLAYER_LEVEL_UP]: new MessageTemplateMapper(
-    'Congratulations {{userName}}! You\'ve reached level {{newLevel}}',
+    "Congratulations {{userName}}! You've reached level {{newLevel}}",
   ),
   [EventType.ITEM_ACQUIRED]: new MessageTemplateMapper(
-    '{{userName}} accepted your friend request',
+    "{{userName}}! You've acquired a new item {{itemName}}",
   ),
   [EventType.FRIEND_REQUEST_SENT]: new MessageTemplateMapper(
     '{{userName}} has sent you a friend request',

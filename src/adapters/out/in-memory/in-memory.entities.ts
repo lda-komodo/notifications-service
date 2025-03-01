@@ -9,6 +9,5 @@ export class NotificationsPreferences {
     public readonly notificationChannel: NotificationPreferencesChannelNamesEnum,
     public readonly deliveryAddress: string,
     public readonly status: NotificationPreferencesStatusEnum,
-  ) {
-  }
+  ) {}
 }

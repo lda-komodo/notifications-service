@@ -11,8 +11,7 @@ export abstract class BaseEventController {
   constructor(
     @Inject(DomainModuleInjectionTokens.EVENT_PROCESSORS)
     protected readonly eventUseCaseProcessors: ProcessEventInterface<BaseEvent>[],
-  ) {
-  }
+  ) {}
 
   protected async callSupportedUseCase(
     gameLevelUpEvent: BaseEvent,
@@ -22,9 +21,7 @@ export abstract class BaseEventController {
       p.supports(eventYpe),
     );
     if (!processor) {
-      this.logger.error(
-        `No processor found for event type: ${eventYpe}`,
-      );
+      this.logger.error(`No processor found for event type: ${eventYpe}`);
       return;
     }
     return await processor.processEvent(gameLevelUpEvent);

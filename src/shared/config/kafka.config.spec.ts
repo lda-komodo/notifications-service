@@ -8,8 +8,7 @@ jest.mock('@nestjs/microservices', () => ({
     registerAsync: jest.fn().mockReturnValue({
       providers: [],
       exports: [],
-      module: class {
-      },
+      module: class {},
     }),
   },
   Transport: {

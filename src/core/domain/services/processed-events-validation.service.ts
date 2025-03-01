@@ -7,12 +7,12 @@ import { BusinessException } from '../exceptions/business.exception';
 
 @Injectable()
 export class ProcessedEventsValidationService
-  implements EventValidationServiceInterface<BaseEvent> {
+  implements EventValidationServiceInterface<BaseEvent>
+{
   constructor(
     @Inject(OutAdapterModuleInjectionTokens.PROCESSED_EVENTS_REPOSITORY)
     private readonly processedEventsRepository: ProcessedEventsRepositoryInterface,
-  ) {
-  }
+  ) {}
 
   async shouldProcess(event: BaseEvent): Promise<boolean> {
     if (await this.processedEventsRepository.exists(event.messageId)) {

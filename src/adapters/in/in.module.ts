@@ -9,5 +9,4 @@ import { SocialEventController } from './kafka/controllers/social-event.controll
   imports: [InfrastructureModule, ApplicationModule, DomainModule],
   controllers: [GameEventController, SocialEventController],
 })
-export class InAdaptersModule {
-}
+export class InAdaptersModule {}

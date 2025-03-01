@@ -1,4 +1,7 @@
-import { NotificationPreferencesChannelNamesEnum, NotificationPreferencesStatusEnum } from './notifications.enum';
+import {
+  NotificationPreferencesChannelNamesEnum,
+  NotificationPreferencesStatusEnum,
+} from './notifications.enum';
 
 export interface NotificationsPreferences {
   userId: string;

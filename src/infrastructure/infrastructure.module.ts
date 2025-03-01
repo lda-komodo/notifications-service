@@ -6,5 +6,4 @@ import { RedisModule } from './redis/redis.module';
   imports: [KafkaModule, RedisModule],
   exports: [KafkaModule, RedisModule],
 })
-export class InfrastructureModule {
-}
+export class InfrastructureModule {}

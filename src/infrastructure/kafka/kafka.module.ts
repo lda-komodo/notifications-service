@@ -33,5 +33,4 @@ import { Partitioners } from 'kafkajs';
   ],
   exports: ['KAFKA_SERVICE'],
 })
-export class KafkaModule {
-}
+export class KafkaModule {}

@@ -25,7 +25,7 @@ export enum OutAdapterModuleInjectionTokens {
     //
     {
       provide:
-      OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
+        OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
       useClass: InMemoryNotificationsPreferencesRepository,
     },
     {
@@ -48,5 +48,4 @@ export enum OutAdapterModuleInjectionTokens {
     OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
   ],
 })
-export class OutAdaptersModule {
-}
+export class OutAdaptersModule {}

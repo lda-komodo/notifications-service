@@ -1,22 +1,28 @@
 import { Module } from '@nestjs/common';
-import { ProcessLevelUpEventUseCase } from './use-cases/process-level-up-event.use-case';
+import { LevelUpUseCase } from './use-cases/level-up-event.use-case';
 import { OutAdaptersModule } from '../../adapters/out/out.module';
-import { DomainModule, DomainModuleInjectionTokens } from '../domain/domain.module';
+import {
+  DomainModule,
+  DomainModuleInjectionTokens,
+} from '../domain/domain.module';
+import { ItemAcquiredUseCase } from './use-cases/item-acquired-event.use-case';
 
 @Module({
   imports: [OutAdaptersModule, DomainModule],
   providers: [
-    ProcessLevelUpEventUseCase,
+    LevelUpUseCase,
+    ItemAcquiredUseCase,
     {
       provide: DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE,
-      useClass: ProcessLevelUpEventUseCase,
+      useClass: LevelUpUseCase,
     },
     {
       provide: DomainModuleInjectionTokens.EVENT_PROCESSORS,
-      useFactory: (processLevelUpEventUseCase: ProcessLevelUpEventUseCase) => [
-        processLevelUpEventUseCase,
-      ],
-      inject: [ProcessLevelUpEventUseCase],
+      useFactory: (
+        processLevelUpEventUseCase: LevelUpUseCase,
+        itemAcquiredEventUseCase: ItemAcquiredUseCase,
+      ) => [processLevelUpEventUseCase, itemAcquiredEventUseCase],
+      inject: [LevelUpUseCase, ItemAcquiredUseCase],
     },
   ],
   exports: [
@@ -24,5 +30,4 @@ import { DomainModule, DomainModuleInjectionTokens } from '../domain/domain.modu
     DomainModuleInjectionTokens.EVENT_PROCESSORS,
   ],
 })
-export class ApplicationModule {
-}
+export class ApplicationModule {}

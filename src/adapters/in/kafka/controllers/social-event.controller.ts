@@ -8,7 +8,6 @@ import { BaseEventController } from './base-event.controller';
 
 @Controller('social-event.consumer')
 export class SocialEventController extends BaseEventController {
-
   @MessagePattern(SOCIAL_FRIEND_REQUEST_TOPIC)
   async handlePlayerLevelUpTopicMessage(@Payload() event: any): Promise<void> {
     this.logger.log(`Evento recibido: ${JSON.stringify(event)}`);

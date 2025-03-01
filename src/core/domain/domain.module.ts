@@ -31,5 +31,4 @@ export enum DomainModuleInjectionTokens {
     DomainModuleInjectionTokens.NOTIFICATION_SERVICE,
   ],
 })
-export class DomainModule {
-}
+export class DomainModule {}
