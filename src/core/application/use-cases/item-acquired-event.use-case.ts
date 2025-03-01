@@ -13,7 +13,7 @@ export class ItemAcquiredUseCase extends BaseEventUseCase<GameItemAcquiredEvent>
   getMessageTemplate(event: GameItemAcquiredEvent): string {
     return MessageTemplates[EventType.ITEM_ACQUIRED].generateMessage({
       userName: event.userId,
-      newLevel: event.itemName,
+      itemName: event.itemName,
     });
   }
 }

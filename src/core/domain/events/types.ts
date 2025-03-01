@@ -13,7 +13,7 @@ export type GameItemAcquiredEvent = BaseEvent & {
 };
 
 export type SocialFriendRequestEvent = BaseEvent & {
-  toUserId: string;
+  fromUserId: string;
 };
 
 export type SocialFriendRequestAcceptedEvent = SocialFriendRequestEvent;

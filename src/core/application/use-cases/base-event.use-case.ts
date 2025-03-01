@@ -4,9 +4,12 @@ import { EventValidationServiceInterface } from '../../domain/services/interface
 import { DomainModuleInjectionTokens } from '../../domain/domain.module';
 import { NotificationServiceInterface } from '../../domain/services/interfaces/notifications-service.interface';
 import { EventType } from '../../domain/events/event-type.enum';
+import { BaseEvent } from '../../domain/events/types';
 
 @Injectable()
-export abstract class BaseEventUseCase<T> implements ProcessEventInterface<T> {
+export abstract class BaseEventUseCase<T extends BaseEvent>
+  implements ProcessEventInterface<T>
+{
   protected readonly logger = new Logger(this.constructor.name);
 
   constructor(
@@ -25,7 +28,7 @@ export abstract class BaseEventUseCase<T> implements ProcessEventInterface<T> {
       return;
     }
     await this.callNotificationsService(event);
-    this.logger.log(`Event processed`);
+    this.logger.log(`Event ${event.messageId} processed`);
   }
 
   private async callValidationsServices(event: T): Promise<boolean> {
@@ -49,7 +52,7 @@ export abstract class BaseEventUseCase<T> implements ProcessEventInterface<T> {
   private async callNotificationsService(event: T): Promise<void> {
     const message = this.getMessageTemplate(event);
     await this.notificationService.processNotification({
-      userId: (event as any).userId,
+      userId: event.userId,
       message: message,
     });
   }
