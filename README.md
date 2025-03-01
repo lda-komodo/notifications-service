@@ -1,13 +1,10 @@
-
-
-
 ## Description
 
 The application is based on hexagonal architecture (ports and adapters).
 
 ![Hexagonal Architecture](https://blog.octo.com/hexagonal-architecture-three-principles-and-an-implementation-example/archi_hexa_en_06-1024x526.webp)
 
-## Tecnology stack
+## Technology Stack
 
 - NodeJS: Server-side JavaScript code execution platform
 - NestJS: NodeJS framework for building scalable and maintainable applications
@@ -15,29 +12,29 @@ The application is based on hexagonal architecture (ports and adapters).
 - Docker-compose: For container orchestration
 - Kafka: The events broker
 
-### Project structure
+### Project Structure
 
 - `src/adapters`: Adapter layer, contains the implementation of the ports defined in the application domain layer
 - `src/core/application`: Application layer, contains the application's services
 - `src/core/domain`: Domain layer, contains the application's entities and value objects
-- `docker-compose.yml`: Localstack and Postgres service orchestration file
+- `docker-compose.yml`: For service orchestration
 
-## Project setup
+## Project Setup
 
 ### Prerequisites
 
-- Docker and Docker-compose installed on the system. By default it is installed with Docker Desktop
+- Docker and Docker-compose installed on the system. By default, it is installed with Docker Desktop
 - NodeJS v22.13.1 (npm v10.9.2) installed on the system
 
-## Project setup
+## Project Setup
 
-You can run the application following typical NestJS and deply the complete stack with Docker compose
+You can run the application following typical NestJS and deploy the complete stack with Docker compose
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+## Compile and Run the Project
 
 ```bash
 # development
@@ -50,7 +47,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
+## Run Tests
 
 ```bash
 # unit tests
@@ -81,7 +78,7 @@ After running the command and Docker builds the images, you should see output si
  ✔ Container notifications-service        Started
 ```
 
-## Example usage
+## Example Usage
 
 1. **Kafka** receives an event from one of the configured topics (`GAMING_PLAYER_LEVEL_UP_TOPIC`, `GAMING_PLAYER_ITEM_ACQUIRED_TOPIC`, `GAMING_PVP_TOPIC`, `GAMING_CHALLENGE_COMPLETED_TOPIC`).
 2. **Kafka Consumer** in the NestJS application consumes the event and sends it to the **GameEventController**.
@@ -112,29 +109,29 @@ After running the command and Docker builds the images, you should see output si
 8. **Notification**: The notification service sends the notifications through the active channels (SMS, Email, Push). Following the OCP principle of SOLID, the notification service can integrate new channels in a highly extensible manner without requiring structural changes.
 9. **Kafka**: Finally, the controller confirms to Kafka that the event has been processed correctly.
 
-## Testing de application
+## Testing the Application
 
-Para propositos de pruebas utilizaremos la aplicacion **kafka-ui** la cual se despliegue con docker-compose. para interactuar con ella solo tienes que ir a tu navegador a la direccion http://localhost:8080
+For testing purposes, we will use the **kafka-ui** application, which is deployed with Docker Compose. To interact with it, simply go to your browser at the address http://localhost:8080.
 
 ![img.png](resources/img.png)
 
-Desde esta interfaz podemos generar los eventos a los que reaccionara nuestra aplicacion. Para eso debemos ir a la seccion de Topics desde donde podemos ver la lista de topicos que estan  actualmente en Kafka
+From this interface, we can generate the events to which our application will react. To do this, we must go to the Topics section where we can see the list of topics currently in Kafka.
 
 ![img_1.png](resources/img_1.png)
 
-Ahora estamos listos para generar esos eventos. Recuerda que enunambiente de produccion, son las otras partes del sistema las que automaticamente generan los m,ensajes en los topicos para ser procesados!
+Now we are ready to generate those events. Remember that in a production environment, other parts of the system automatically generate messages on the topics to be processed!
 
-Selecciona un topico cualquiera y luego en el panel ir a la opcion de Produce Message
+Select any topic and then go to the Produce Message option in the panel.
 
 ![img_2.png](resources/img_2.png)
 
-Ahora ya podemos generar nuestros mensajes
+Now we can generate our messages.
 
 ![img_3.png](resources/img_3.png)
 
-Aca [extracted_topics.json](resources/extracted_topics.json) puedes encontrar los ejemplos de los mensajes de cada topic, pero empecemos por uno de manera rapida
+Here [extracted_topics.json](resources/extracted_topics.json) you can find message examples for each topic, but let's start with one quickly.
 
-toma este ejemplo para el topico de `gaming.player.item.acquired`
+Take this example for the `gaming.player.item.acquired` topic:
 ```json
 {
   "messageId": "PffW7grm7P5yws9PMws8V",
@@ -143,13 +140,16 @@ toma este ejemplo para el topico de `gaming.player.item.acquired`
   "itemName": "SwordOfAzeroth"
 }
 ```
-podras ver los logs de la aplicacion entradas similares a esta
+
+You will see log entries in the application similar to this:
 
 ```
 [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [GameEventController] Event received: PffW7grm7P5yws9PMws8R timestamp: 1740830925
-2025-03-01T21:24:29.795382634Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [SMSNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
-2025-03-01T21:24:29.795420384Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [EmailNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
-2025-03-01T21:24:29.795425092Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [PushNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
-2025-03-01T21:24:29.795432175Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [ItemAcquiredEventUseCase] Event PffW7grm7P5yws9PMws8R processed
+[Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [SMSNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+[Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [EmailNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+[Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [PushNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+[Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [ItemAcquiredEventUseCase] Event PffW7grm7P5yws9PMws8R processed
 ```
-Ten en cuenta que en la base de datos dummy(un mapa en memoria de la aplicacion) se encuentran registradas la preferencias de notificacion de 3 usuarios. Cada uno tiene sus propios canales activos(SMS, PUSH. Email). De acuerdo a estas configuracion la aplicacion decidira que canales activar para el envio simulado de estas notificaciones
+
+Note that in the dummy database (an in-memory map of the application), the notification preferences of 3 users are registered. Each one has its own active channels (SMS, PUSH, Email). According to these configurations, the application will decide which channels to activate for the simulated sending of these notifications.
+
