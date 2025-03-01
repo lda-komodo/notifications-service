@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { GameLevelUpEvent, GamePvPEvent } from '../../domain/events/types';
+import { GamePvPEvent } from '../../domain/events/types';
 import { MessageTemplates } from '../../domain/messages/message-templates';
 import { EventType } from '../../domain/events/event-type.enum';
 import { BaseEventUseCase } from './base-event.use-case';

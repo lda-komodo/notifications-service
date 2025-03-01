@@ -11,10 +11,16 @@ export const MessageTemplates: Record<EventType, MessageTemplateMapper> = {
   [EventType.PVP]: new MessageTemplateMapper(
     "You've been defeated by user: {{vsUser}}",
   ),
+  [EventType.CHALLENGE_COMPLETED]: new MessageTemplateMapper(
+    "What an achievement! You've completed the {{challenge}} challenge",
+  ),
   [EventType.FRIEND_REQUEST_SENT]: new MessageTemplateMapper(
     'user: {{fromUser}} has sent you a friend request',
   ),
   [EventType.FRIEND_REQUEST_ACCEPTED]: new MessageTemplateMapper(
     'user: {{fromUser}} accepted your friend request',
+  ),
+  [EventType.NEW_FOLLOWER]: new MessageTemplateMapper(
+    'user: {{fromUser}} now follows you',
   ),
 };

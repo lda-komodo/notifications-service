@@ -21,3 +21,4 @@ export type SocialFriendRequestEvent = BaseEvent & {
 };
 
 export type SocialFriendRequestAcceptedEvent = SocialFriendRequestEvent;
+export type SocialNewFollowerEvent = SocialFriendRequestEvent;

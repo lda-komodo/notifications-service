@@ -9,6 +9,7 @@ import { ItemAcquiredEventUseCase } from './use-cases/item-acquired-event.use-ca
 import { FriendRequestEventUseCase } from './use-cases/friend-request-event.use-case';
 import { FriendRequestAcceptedEventUseCase } from './use-cases/friend-request-accepted-event.use-case';
 import { PlayerVsPlayerEventUseCase } from './use-cases/player-vs-player-event.use-case';
+import { NewFollowerEventUseCase } from './use-cases/new-follower-event.use-case';
 
 @Module({
   imports: [OutAdaptersModule, DomainModule],
@@ -18,6 +19,7 @@ import { PlayerVsPlayerEventUseCase } from './use-cases/player-vs-player-event.u
     PlayerVsPlayerEventUseCase,
     FriendRequestEventUseCase,
     FriendRequestAcceptedEventUseCase,
+    NewFollowerEventUseCase,
     {
       provide: DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE,
       useClass: LevelUpEventUseCase,
@@ -30,12 +32,14 @@ import { PlayerVsPlayerEventUseCase } from './use-cases/player-vs-player-event.u
         playerVsPlayerEventUseCase: PlayerVsPlayerEventUseCase,
         friendRequestEventUseCase: FriendRequestEventUseCase,
         friendRequestAcceptedEventUseCase: FriendRequestAcceptedEventUseCase,
+        newFollowerEventUseCase: NewFollowerEventUseCase,
       ) => [
         processLevelUpEventUseCase,
         itemAcquiredEventUseCase,
         playerVsPlayerEventUseCase,
         friendRequestEventUseCase,
         friendRequestAcceptedEventUseCase,
+        newFollowerEventUseCase,
       ],
       inject: [
         LevelUpEventUseCase,
@@ -43,6 +47,7 @@ import { PlayerVsPlayerEventUseCase } from './use-cases/player-vs-player-event.u
         PlayerVsPlayerEventUseCase,
         FriendRequestEventUseCase,
         FriendRequestAcceptedEventUseCase,
+        NewFollowerEventUseCase,
       ],
     },
   ],

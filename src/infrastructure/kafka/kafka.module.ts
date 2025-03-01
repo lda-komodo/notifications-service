@@ -19,9 +19,8 @@ import { Partitioners } from 'kafkajs';
               retry: {
                 retries: configService.get<number>('kafka.retries'),
                 factor: 2,
-
               },
-              connectionTimeout: 3000
+              connectionTimeout: 3000,
             },
             consumer: {
               groupId: configService.get<string>('kafka.groupId'),
