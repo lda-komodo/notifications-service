@@ -13,7 +13,7 @@ export class LevelUpEventUseCase extends BaseEventUseCase<GameLevelUpEvent> {
   getMessageTemplate(event: GameLevelUpEvent): string {
     return MessageTemplates[EventType.PLAYER_LEVEL_UP].generateMessage({
       userName: event.userId,
-      newLevel: event.newLevel.toString(),
+      newLevel: event.newLevel,
     });
   }
 }

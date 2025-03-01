@@ -13,9 +13,11 @@ describe('GameEventController (e2e) - Kafka with Testcontainers', () => {
     // Start Kafka container
     kafkaContainer = await new GenericContainer('confluentinc/cp-kafka')
       .withExposedPorts(9092)
-      .withEnvironment({'KAFKA_ADVERTISED_LISTENERS': 'PLAINTEXT://localhost:9092'})
-      .withEnvironment({'KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR': '1'})
-      .withEnvironment({'KAFKA_BROKER_ID': '1'})
+      .withEnvironment({
+        KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://localhost:9092',
+      })
+      .withEnvironment({ KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: '1' })
+      .withEnvironment({ KAFKA_BROKER_ID: '1' })
       .start();
 
     const kafkaPort = kafkaContainer.getMappedPort(9092);

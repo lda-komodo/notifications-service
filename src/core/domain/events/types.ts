@@ -17,7 +17,7 @@ export type GamePvPEvent = BaseEvent & {
 };
 
 export type GameChallengeCompletedEvent = BaseEvent & {
-  challenge: number;
+  challenge: string;
 };
 
 export type SocialFriendRequestEvent = BaseEvent & {
