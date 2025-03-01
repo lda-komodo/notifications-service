@@ -9,6 +9,7 @@ import {
 } from '../../../../shared/config/kafka.config';
 import { BaseEventController } from './base-event.controller';
 import {
+  GameChallengeCompletedEvent,
   GameItemAcquiredEvent,
   GameLevelUpEvent,
   GamePvPEvent,
@@ -50,7 +51,7 @@ export class GameEventController extends BaseEventController {
 
   @MessagePattern(GAMING_CHALLENGE_COMPLETED_TOPIC)
   async handleChallengeCompletedTopicMessage(
-    @Payload() event: GamePvPEvent,
+    @Payload() event: GameChallengeCompletedEvent,
   ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,

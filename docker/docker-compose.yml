@@ -8,8 +8,20 @@ services:
       - docker-env
     ports:
       - "9094:9094"
+
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - "6379:6379"
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
