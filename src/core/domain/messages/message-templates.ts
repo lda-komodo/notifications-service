@@ -6,12 +6,15 @@ export const MessageTemplates: Record<EventType, MessageTemplateMapper> = {
     "Congratulations {{userName}}! You've reached level {{newLevel}}",
   ),
   [EventType.ITEM_ACQUIRED]: new MessageTemplateMapper(
-    "You've acquired the {{itemName}} item",
+    "You've acquired {{itemName}} item",
+  ),
+  [EventType.PVP]: new MessageTemplateMapper(
+    "You've been defeated by user: {{vsUser}}",
   ),
   [EventType.FRIEND_REQUEST_SENT]: new MessageTemplateMapper(
-    '{{fromUser}} has sent you a friend request',
+    'user: {{fromUser}} has sent you a friend request',
   ),
   [EventType.FRIEND_REQUEST_ACCEPTED]: new MessageTemplateMapper(
-    '{{fromUser}} accepted your friend request',
+    'user: {{fromUser}} accepted your friend request',
   ),
 };

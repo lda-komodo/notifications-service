@@ -5,7 +5,7 @@ import { EventType } from '../../domain/events/event-type.enum';
 import { BaseEventUseCase } from './base-event.use-case';
 
 @Injectable()
-export class LevelUpUseCase extends BaseEventUseCase<GameLevelUpEvent> {
+export class LevelUpEventUseCase extends BaseEventUseCase<GameLevelUpEvent> {
   supports(eventType: EventType): boolean {
     return eventType === EventType.PLAYER_LEVEL_UP;
   }

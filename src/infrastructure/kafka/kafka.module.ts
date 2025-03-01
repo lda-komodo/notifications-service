@@ -16,12 +16,16 @@ import { Partitioners } from 'kafkajs';
             client: {
               brokers: configService.get<string[]>('kafka.brokers'),
               clientId: configService.get<string>('kafka.clientId'),
+              retry: {
+                retries: configService.get<number>('kafka.retries'),
+                factor: 2,
+
+              },
+              connectionTimeout: 3000
             },
             consumer: {
               groupId: configService.get<string>('kafka.groupId'),
-              retry: {
-                retries: configService.get<number>('kafka.retries'),
-              },
+              allowAutoTopicCreation: true,
             },
             producer: {
               createPartitioner: Partitioners.LegacyPartitioner,

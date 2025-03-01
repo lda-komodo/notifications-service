@@ -1,41 +1,46 @@
 import { Module } from '@nestjs/common';
-import { LevelUpUseCase } from './use-cases/level-up-event.use-case';
+import { LevelUpEventUseCase } from './use-cases/level-up-event.use-case';
 import { OutAdaptersModule } from '../../adapters/out/out.module';
 import {
   DomainModule,
   DomainModuleInjectionTokens,
 } from '../domain/domain.module';
-import { ItemAcquiredUseCase } from './use-cases/item-acquired-event.use-case';
+import { ItemAcquiredEventUseCase } from './use-cases/item-acquired-event.use-case';
 import { FriendRequestEventUseCase } from './use-cases/friend-request-event.use-case';
 import { FriendRequestAcceptedEventUseCase } from './use-cases/friend-request-accepted-event.use-case';
+import { PlayerVsPlayerEventUseCase } from './use-cases/player-vs-player-event.use-case';
 
 @Module({
   imports: [OutAdaptersModule, DomainModule],
   providers: [
-    LevelUpUseCase,
-    ItemAcquiredUseCase,
+    LevelUpEventUseCase,
+    ItemAcquiredEventUseCase,
+    PlayerVsPlayerEventUseCase,
     FriendRequestEventUseCase,
     FriendRequestAcceptedEventUseCase,
     {
       provide: DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE,
-      useClass: LevelUpUseCase,
+      useClass: LevelUpEventUseCase,
     },
     {
       provide: DomainModuleInjectionTokens.EVENT_PROCESSORS,
       useFactory: (
-        processLevelUpEventUseCase: LevelUpUseCase,
-        itemAcquiredEventUseCase: ItemAcquiredUseCase,
+        processLevelUpEventUseCase: LevelUpEventUseCase,
+        itemAcquiredEventUseCase: ItemAcquiredEventUseCase,
+        playerVsPlayerEventUseCase: PlayerVsPlayerEventUseCase,
         friendRequestEventUseCase: FriendRequestEventUseCase,
         friendRequestAcceptedEventUseCase: FriendRequestAcceptedEventUseCase,
       ) => [
         processLevelUpEventUseCase,
         itemAcquiredEventUseCase,
+        playerVsPlayerEventUseCase,
         friendRequestEventUseCase,
         friendRequestAcceptedEventUseCase,
       ],
       inject: [
-        LevelUpUseCase,
-        ItemAcquiredUseCase,
+        LevelUpEventUseCase,
+        ItemAcquiredEventUseCase,
+        PlayerVsPlayerEventUseCase,
         FriendRequestEventUseCase,
         FriendRequestAcceptedEventUseCase,
       ],

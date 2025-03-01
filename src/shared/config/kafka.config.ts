@@ -3,6 +3,7 @@ import { registerAs } from '@nestjs/config';
 
 export const GAMING_PLAYER_LEVEL_UP_TOPIC = 'gaming.player.level.up';
 export const GAMING_PLAYER_ITEM_ACQUIRED_TOPIC = 'gaming.player.item.acquired';
+export const GAMING_PVP_TOPIC = 'gaming.pvp'
 export const SOCIAL_FRIEND_REQUEST_TOPIC = 'social.fried.request';
 export const SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC =
   'social.fried.request.accepted';

@@ -5,7 +5,7 @@ import { MessageTemplates } from '../../domain/messages/message-templates';
 import { BaseEventUseCase } from './base-event.use-case';
 
 @Injectable()
-export class ItemAcquiredUseCase extends BaseEventUseCase<GameItemAcquiredEvent> {
+export class ItemAcquiredEventUseCase extends BaseEventUseCase<GameItemAcquiredEvent> {
   supports(eventType: EventType): boolean {
     return eventType === EventType.ITEM_ACQUIRED;
   }

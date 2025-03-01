@@ -2,7 +2,7 @@ version: '3.8'
 name: 'notifications-service'
 services:
   kafka:
-    image: bitnami/kafka:3.6.1
+    image: bitnami/kafka:latest
     container_name: kafka
     env_file:
       - docker-env

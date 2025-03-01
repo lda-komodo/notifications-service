@@ -12,6 +12,10 @@ export type GameItemAcquiredEvent = BaseEvent & {
   itemName: string;
 };
 
+export type GamePvPEvent = BaseEvent & {
+  vsUser: number;
+};
+
 export type SocialFriendRequestEvent = BaseEvent & {
   fromUserId: string;
 };
