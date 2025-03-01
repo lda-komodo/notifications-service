@@ -64,7 +64,7 @@ The project has a [docker-compose.yml](docker-compose.yml) file that orchestrate
 To start the Localstack and Postgres services, run the following command:
 
 ```bash
-docker-compose -p card-transactions-management up -d
+docker compose -p notifications-service up -d
 ```
 
 After running the command and Docker builds the images, you should see output similar to the following:
