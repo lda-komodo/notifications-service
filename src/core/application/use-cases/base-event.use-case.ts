@@ -3,7 +3,6 @@ import { ProcessEventInterface } from '../../domain/ports/in/process-event.inter
 import { EventValidationServiceInterface } from '../../domain/services/interfaces/events-validation.service.interface';
 import { DomainModuleInjectionTokens } from '../../domain/domain.module';
 import { NotificationServiceInterface } from '../../domain/services/interfaces/notifications-service.interface';
-import { MessageTemplates } from '../../domain/messages/message-templates';
 import { EventType } from '../../domain/events/event-type.enum';
 
 @Injectable()
@@ -18,6 +17,7 @@ export abstract class BaseEventUseCase<T> implements ProcessEventInterface<T> {
   ) {}
 
   abstract supports(eventType: EventType): boolean;
+
   abstract getMessageTemplate(event: T): string;
 
   async processEvent(event: T): Promise<void> {
