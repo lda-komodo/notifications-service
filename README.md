@@ -132,7 +132,7 @@ Ahora ya podemos generar nuestros mensajes
 
 ![img_3.png](resources/img_3.png)
 
-Aca [extracted_topics.json](extracted_topics.json) puedes encontrar los ejemplos de los mensajes de cada topic, pero empecemos por uno de manera rapida
+Aca [extracted_topics.json](resources/extracted_topics.json) puedes encontrar los ejemplos de los mensajes de cada topic, pero empecemos por uno de manera rapida
 
 toma este ejemplo para el topico de `gaming.player.item.acquired`
 ```json
