@@ -2,7 +2,8 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import {
   SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC,
-  SOCIAL_FRIEND_REQUEST_TOPIC, SOCIAL_NEW_FOLLOWER_TOPIC,
+  SOCIAL_FRIEND_REQUEST_TOPIC,
+  SOCIAL_NEW_FOLLOWER_TOPIC,
 } from '../../../../shared/config/kafka.config';
 import { BaseEventController } from './base-event.controller';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
@@ -46,9 +47,6 @@ export class SocialEventController extends BaseEventController {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
     );
-    return await this.callSupportedUseCase(
-      event,
-      EventType.NEW_FOLLOWER,
-    );
+    return await this.callSupportedUseCase(event, EventType.NEW_FOLLOWER);
   }
 }

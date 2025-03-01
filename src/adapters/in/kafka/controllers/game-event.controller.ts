@@ -49,10 +49,15 @@ export class GameEventController extends BaseEventController {
   }
 
   @MessagePattern(GAMING_CHALLENGE_COMPLETED_TOPIC)
-  async handleChallengeCompletedTopicMessage(@Payload() event: GamePvPEvent): Promise<void> {
+  async handleChallengeCompletedTopicMessage(
+    @Payload() event: GamePvPEvent,
+  ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
     );
-    return await this.callSupportedUseCase(event, EventType.CHALLENGE_COMPLETED);
+    return await this.callSupportedUseCase(
+      event,
+      EventType.CHALLENGE_COMPLETED,
+    );
   }
 }

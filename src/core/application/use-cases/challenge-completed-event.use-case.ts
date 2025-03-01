@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import {
+  GameChallengeCompletedEvent,
   GamePvPEvent,
-  SocialNewFollowerEvent,
 } from '../../domain/events/types';
 import { MessageTemplates } from '../../domain/messages/message-templates';
 import { EventType } from '../../domain/events/event-type.enum';
 import { BaseEventUseCase } from './base-event.use-case';
 
 @Injectable()
-export class NewFollowerEventUseCase extends BaseEventUseCase<SocialNewFollowerEvent> {
+export class ChallengeCompletedEventUseCase extends BaseEventUseCase<GameChallengeCompletedEvent> {
   supports(eventType: EventType): boolean {
-    return eventType === EventType.NEW_FOLLOWER;
+    return eventType === EventType.CHALLENGE_COMPLETED;
   }
 
-  getMessageTemplate(event: SocialNewFollowerEvent): string {
-    return MessageTemplates[EventType.NEW_FOLLOWER].generateMessage({
+  getMessageTemplate(event: GameChallengeCompletedEvent): string {
+    return MessageTemplates[EventType.CHALLENGE_COMPLETED].generateMessage({
       userName: event.userId,
-      fromUser: event.fromUserId,
+      challenge: event.challenge,
     });
   }
 }

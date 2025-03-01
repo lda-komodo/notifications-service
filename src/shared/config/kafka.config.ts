@@ -8,8 +8,7 @@ export const GAMING_CHALLENGE_COMPLETED_TOPIC = 'gaming.challenge.completed';
 export const SOCIAL_FRIEND_REQUEST_TOPIC = 'social.friend.request';
 export const SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC =
   'social.friend.request.accepted';
-export const SOCIAL_NEW_FOLLOWER_TOPIC =
-  'social.new.follower';
+export const SOCIAL_NEW_FOLLOWER_TOPIC = 'social.new.follower';
 
 export default registerAs('kafka', () => ({
   brokers: process.env.KAFKA_BROKERS?.split(',') || ['localhost:9094'],
