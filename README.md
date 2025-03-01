@@ -61,7 +61,7 @@ $ npm run test:cov
 
 The project has a [docker-compose.yml](docker-compose.yml) file that orchestrates the Localstack and Postgres services.
 
-To start the Localstack and Postgres services, run the following command:
+To start, run the following command:
 
 ```bash
 docker compose -p notifications-service up -d
