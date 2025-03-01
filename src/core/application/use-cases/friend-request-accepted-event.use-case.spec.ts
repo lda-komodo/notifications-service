@@ -6,10 +6,7 @@ import {
   eventValidationServicesMockProviders,
   notificationServicesMockProvider,
 } from '../../../../___MOCKS___/providers.mocks';
-import {
-  gameChallengeCompletedEventMock,
-  socialFriendRequestAcceptedEventEventMock,
-} from '../../../../___MOCKS___/game-events.mocks';
+import { socialFriendRequestAcceptedEventEventMock } from '../../../../___MOCKS___/game-events.mocks';
 
 describe('FriendRequestAcceptedEventUseCase', () => {
   let useCase: FriendRequestAcceptedEventUseCase;
@@ -43,7 +40,9 @@ describe('FriendRequestAcceptedEventUseCase', () => {
       'generateMessage',
     );
 
-    const message = useCase.getMessageTemplate(socialFriendRequestAcceptedEventEventMock);
+    const message = useCase.getMessageTemplate(
+      socialFriendRequestAcceptedEventEventMock,
+    );
 
     expect(message).toBe(expectedMessage);
     expect(

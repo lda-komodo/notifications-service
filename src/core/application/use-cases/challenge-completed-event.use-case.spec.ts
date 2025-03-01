@@ -1,13 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ChallengeCompletedEventUseCase } from './challenge-completed-event.use-case';
 import { EventType } from '../../domain/events/event-type.enum';
-import { GameChallengeCompletedEvent } from '../../domain/events/types';
 import { MessageTemplates } from '../../domain/messages/message-templates';
 import {
   eventValidationServicesMockProviders,
   notificationServicesMockProvider,
 } from '../../../../___MOCKS___/providers.mocks';
-import { gameChallengeCompletedEventMock, gameLevelUpEventMock } from '../../../../___MOCKS___/game-events.mocks';
+import { gameChallengeCompletedEventMock } from '../../../../___MOCKS___/game-events.mocks';
 
 describe('ChallengeCompletedEventUseCase', () => {
   let useCase: ChallengeCompletedEventUseCase;

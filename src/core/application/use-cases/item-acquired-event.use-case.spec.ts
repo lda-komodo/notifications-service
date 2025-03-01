@@ -6,10 +6,7 @@ import {
   eventValidationServicesMockProviders,
   notificationServicesMockProvider,
 } from '../../../../___MOCKS___/providers.mocks';
-import {
-  gameItemAcquiredEventMock,
-  socialFriendRequestAcceptedEventEventMock,
-} from '../../../../___MOCKS___/game-events.mocks';
+import { gameItemAcquiredEventMock } from '../../../../___MOCKS___/game-events.mocks';
 
 describe('ItemAcquiredEventUseCase', () => {
   let useCase: ItemAcquiredEventUseCase;
@@ -36,10 +33,7 @@ describe('ItemAcquiredEventUseCase', () => {
 
   it('getMessageTemplate should return correct message template for valid event', () => {
     const expectedMessage = `You've acquired SuperItem item`;
-    jest.spyOn(
-      MessageTemplates[EventType.ITEM_ACQUIRED],
-      'generateMessage',
-    );
+    jest.spyOn(MessageTemplates[EventType.ITEM_ACQUIRED], 'generateMessage');
 
     const message = useCase.getMessageTemplate(gameItemAcquiredEventMock);
 
