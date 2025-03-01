@@ -116,21 +116,21 @@ After running the command and Docker builds the images, you should see output si
 
 Para propositos de pruebas utilizaremos la aplicacion **kafka-ui** la cual se despliegue con docker-compose. para interactuar con ella solo tienes que ir a tu navegador a la direccion http://localhost:8080
 
-![img.png](img.png)
+![img.png](resources/img.png)
 
 Desde esta interfaz podemos generar los eventos a los que reaccionara nuestra aplicacion. Para eso debemos ir a la seccion de Topics desde donde podemos ver la lista de topicos que estan  actualmente en Kafka
 
-![img_1.png](img_1.png)
+![img_1.png](resources/img_1.png)
 
 Ahora estamos listos para generar esos eventos. Recuerda que enunambiente de produccion, son las otras partes del sistema las que automaticamente generan los m,ensajes en los topicos para ser procesados!
 
 Selecciona un topico cualquiera y luego en el panel ir a la opcion de Produce Message
 
-![img_2.png](img_2.png)
+![img_2.png](resources/img_2.png)
 
 Ahora ya podemos generar nuestros mensajes
 
-![img_3.png](img_3.png)
+![img_3.png](resources/img_3.png)
 
 Aca [extracted_topics.json](extracted_topics.json) puedes encontrar los ejemplos de los mensajes de cada topic, pero empecemos por uno de manera rapida
 
