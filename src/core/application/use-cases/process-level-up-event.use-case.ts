@@ -1,24 +1,44 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { GameLevelUpEvent } from '../../domain/events/types';
-import { NotificationService } from '../../domain/services/notifications-preferences.service';
-import { ProcessLevelUpEventInterface } from '../../domain/ports/in/process-level-up-event.interface';
-import { EventValidationServiceInterface } from '../../domain/ports/out/events-validation.service.interface';
+import { ProcessEventInterface } from '../../domain/ports/in/process-event.interface';
+import { EventValidationServiceInterface } from '../../domain/services/interfaces/events-validation.service.interface';
 import { DomainModuleInjectionTokens } from '../../domain/domain.module';
+import { NotificationServiceInterface } from '../../domain/services/interfaces/notifications-service.interface';
+import { MessageTemplates } from '../../domain/messages/message-templates';
+import { EventType } from '../../domain/events/event-type.enum';
 
 @Injectable()
 export class ProcessLevelUpEventUseCase
-  implements ProcessLevelUpEventInterface {
+  implements ProcessEventInterface<GameLevelUpEvent> {
   protected readonly logger = new Logger(this.constructor.name);
 
   constructor(
     @Inject(DomainModuleInjectionTokens.EVENTS_VALIDATION_SERVICES)
     private readonly eventsValidationsServices: EventValidationServiceInterface<GameLevelUpEvent>[],
     @Inject(DomainModuleInjectionTokens.NOTIFICATION_SERVICE)
-    private readonly notificationService: NotificationService,
+    private readonly notificationService: NotificationServiceInterface,
   ) {
   }
 
-  async processLevelUpEvent(gameLevelUpEvent: GameLevelUpEvent): Promise<void> {
+  supports(eventType: EventType): boolean {
+    return eventType === EventType.PLAYER_LEVEL_UP;
+  }
+
+  async processEvent(event: GameLevelUpEvent): Promise<void> {
+    if (!(await this.callValidationsServices(event))) {
+      return;
+    }
+
+    await this.callNotificationsService(event);
+
+    this.logger.log(`Event ${event.messageId} processed`);
+
+    return;
+  }
+
+  private async callValidationsServices(
+    gameLevelUpEvent: GameLevelUpEvent,
+  ): Promise<boolean> {
     const validationsResults = await Promise.allSettled(
       this.eventsValidationsServices.map(async (validationService) => {
         await validationService.shouldProcess(gameLevelUpEvent);
@@ -30,16 +50,24 @@ export class ProcessLevelUpEventUseCase
       .map((result) => result.reason);
 
     if (errors.length > 0) {
-      this.logger.warn(`Errores de validación: ${errors.join(', ')}`);
-      return;
+      this.logger.warn(`Validations errors: ${errors.join(', ')}`);
+      return false;
     }
+    return true;
+  }
 
-    await this.notificationService.sendNotification(
-      gameLevelUpEvent.userId,
-      'Aqui va el mensaje',
-    );
+  private async callNotificationsService(
+    gameLevelUpEvent: GameLevelUpEvent,
+  ): Promise<void> {
+    const template = MessageTemplates[EventType.PLAYER_LEVEL_UP];
+    const message = template.generateMessage({
+      userName: gameLevelUpEvent.userId,
+      newLevel: gameLevelUpEvent.newLevel.toString(),
+    });
 
-    Logger.log(`Evento ${gameLevelUpEvent.messageId} procesado`);
-    return Promise.resolve(undefined);
+    await this.notificationService.processNotification({
+      userId: gameLevelUpEvent.userId,
+      message: message,
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ProcessedEventsRepositoryInterface } from '../ports/out/processed-events.repository.interface';
-import { EventValidationServiceInterface } from '../ports/out/events-validation.service.interface';
+import { EventValidationServiceInterface } from './interfaces/events-validation.service.interface';
 import { BaseEvent } from '../events/types';
 import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out.module';
 import { BusinessException } from '../exceptions/business.exception';
@@ -14,13 +14,13 @@ export class ProcessedEventsValidationService
   ) {
   }
 
-  async shouldProcess(eventContext: BaseEvent): Promise<boolean> {
-    if (await this.processedEventsRepository.exists(eventContext.messageId)) {
+  async shouldProcess(event: BaseEvent): Promise<boolean> {
+    if (await this.processedEventsRepository.exists(event.messageId)) {
       throw new BusinessException(
-        `Event ${eventContext.messageId} already processed, ignoring...`,
+        `Event ${event.messageId} already processed, ignoring...`,
       );
     }
-    await this.processedEventsRepository.save(eventContext.messageId, 360);
+    await this.processedEventsRepository.save(event.messageId, 360);
     return true;
   }
 }

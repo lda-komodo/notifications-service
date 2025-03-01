@@ -6,12 +6,23 @@ import { DomainModule, DomainModuleInjectionTokens } from '../domain/domain.modu
 @Module({
   imports: [OutAdaptersModule, DomainModule],
   providers: [
+    ProcessLevelUpEventUseCase,
     {
       provide: DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE,
       useClass: ProcessLevelUpEventUseCase,
     },
+    {
+      provide: DomainModuleInjectionTokens.EVENT_PROCESSORS,
+      useFactory: (processLevelUpEventUseCase: ProcessLevelUpEventUseCase) => [
+        processLevelUpEventUseCase,
+      ],
+      inject: [ProcessLevelUpEventUseCase],
+    },
   ],
-  exports: [DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE],
+  exports: [
+    DomainModuleInjectionTokens.PROCESS_LEVEL_UP_EVENT_INTERFACE,
+    DomainModuleInjectionTokens.EVENT_PROCESSORS,
+  ],
 })
 export class ApplicationModule {
 }

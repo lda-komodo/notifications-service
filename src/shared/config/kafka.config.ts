@@ -12,5 +12,5 @@ export default registerAs('kafka', () => ({
   groupId: process.env.KAFKA_GROUP_ID || 'game-events-consumer',
   clientId: process.env.KAFKA_CLIENT_ID || 'game-notifier',
   retries: parseInt(process.env.KAFKA_RETRIES ?? '5', 10),
-  requestTimeout: parseInt(process.env.KAFKA_REQUEST_TIMEOUT ?? '30000', 10),
+  requestTimeout: parseInt(process.env.KAFKA_REQUEST_TIMEOUT ?? '5000', 10),
 }));

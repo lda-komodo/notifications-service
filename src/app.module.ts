@@ -16,5 +16,4 @@ import { DomainModule } from './core/domain/domain.module';
     DomainModule,
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -4,10 +4,12 @@ import { RedisProcessedEventsRepository } from './redis/redis-processed-events.r
 import { SMSNotificationsChannel } from './notification-channels/sms-notifications-channel';
 import { EmailNotificationsChannel } from './notification-channels/email-notifications-channel';
 import { PushNotificationsChannel } from './notification-channels/push-notifications-channel';
+import { InMemoryNotificationsPreferencesRepository } from './in-memory/in-memory-notifications-preferences.repository';
 
 export enum OutAdapterModuleInjectionTokens {
   PROCESSED_EVENTS_REPOSITORY = 'PROCESSED_EVENTS_REPOSITORY',
   NOTIFICATION_CHANNELS = 'NOTIFICATION_CHANNELS',
+  NOTIFICATIONS_PREFERENCES_REPOSITORY = 'NOTIFICATIONS_PREFERENCES_REPOSITORY',
 }
 
 @Module({
@@ -19,6 +21,12 @@ export enum OutAdapterModuleInjectionTokens {
     {
       provide: OutAdapterModuleInjectionTokens.PROCESSED_EVENTS_REPOSITORY,
       useClass: RedisProcessedEventsRepository,
+    },
+    //
+    {
+      provide:
+      OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
+      useClass: InMemoryNotificationsPreferencesRepository,
     },
     {
       provide: OutAdapterModuleInjectionTokens.NOTIFICATION_CHANNELS,
@@ -37,6 +45,7 @@ export enum OutAdapterModuleInjectionTokens {
   exports: [
     OutAdapterModuleInjectionTokens.PROCESSED_EVENTS_REPOSITORY,
     OutAdapterModuleInjectionTokens.NOTIFICATION_CHANNELS,
+    OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
   ],
 })
 export class OutAdaptersModule {

@@ -6,5 +6,4 @@ import { OutAdaptersModule } from './out/out.module';
   imports: [InAdaptersModule, OutAdaptersModule],
   exports: [InAdaptersModule, OutAdaptersModule],
 })
-export class AdaptersModule {
-}
+export class AdaptersModule {}

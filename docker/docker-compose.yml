@@ -7,7 +7,6 @@ services:
     env_file:
       - docker-env
     ports:
-      - "9092:9092"
       - "9094:9094"
   redis:
     image: redis:latest

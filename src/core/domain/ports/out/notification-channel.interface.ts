@@ -1,3 +1,7 @@
+import { NotificationPreferencesChannelNamesEnum } from '../../entities/notifications.enum';
+
 export interface NotificationChannelInterface {
-  send(message: string): Promise<void>;
+  notificationChannel: NotificationPreferencesChannelNamesEnum;
+
+  send(message: string, deliveryAddress: string): Promise<void>;
 }

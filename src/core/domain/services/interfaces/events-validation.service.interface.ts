@@ -1,3 +1,3 @@
 export interface EventValidationServiceInterface<T> {
-  shouldProcess(eventContext: T): Promise<boolean>;
+  shouldProcess(event: T): Promise<boolean>;
 }
