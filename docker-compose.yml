@@ -1,19 +1,29 @@
-version: '3.8'
 name: 'notifications-service'
 services:
+  app:
+    container_name: notifications-service
+    env_file:
+      - docker/notifications-service.env
+    restart:
+      always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - kafka
+
   kafka:
     image: bitnami/kafka:latest
     container_name: kafka
     env_file:
-      - docker-env
-    ports:
-      - "9094:9094"
+      - docker/docker-env
 
   redis:
     image: redis:latest
     container_name: redis
-    ports:
-      - "6379:6379"
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest

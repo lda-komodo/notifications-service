@@ -1,0 +1,64 @@
+[
+  {
+    "topic": "gaming.player.level.up",
+    "value": {
+      "messageId": "_wLFBEoktd2Q28_SGymIa",
+      "timestamp": "1740831100",
+      "userId": "1",
+      "newLevel": 15
+    }
+  },
+  {
+    "topic": "gaming.pvp",
+    "value": {
+      "messageId": "I4XJFLMZW1DBrqNV4EtvD",
+      "timestamp": "1740831000",
+      "userId": "1",
+      "vsUser": 8}
+  },
+  {
+    "topic": "gaming.player.item.acquired",
+    "value": {
+      "messageId": "PffW7grm7P5yws9PMws8V",
+      "timestamp": "1740830925",
+      "userId": "1",
+      "itemName": "SwordOfAzeroth"
+    }
+  },
+  {
+    "topic": "social.friend.request",
+    "value": {
+      "messageId": "Dqac7bVSMHjQN9uYYiZ-F",
+      "timestamp": "1740830825",
+      "userId": "1",
+      "fromUserId": 8
+    }
+  },
+  {
+    "topic": "social.friend.request.accepted",
+    "value": {
+      "messageId": "HipjirchicguA_l5OVxgl",
+      "timestamp": "1740830725",
+      "userId": "1",
+      "fromUserId": 8
+    }
+  },
+  {
+    "topic": "social.new.follower",
+    "value": {
+      "messageId": "{{uuid}}",
+      "timestamp": "{{timestamp}}",
+      "userId": "1",
+      "fromUserId": 8
+    }
+  },
+  {
+    "topic": "gaming.challenge.completed",
+    "value": {
+      "messageId": "{{uuid}}",
+      "timestamp": "{{timestamp}}",
+      "userId": "2",
+      "challenge": "Kill the dragon"
+    }
+  }
+]

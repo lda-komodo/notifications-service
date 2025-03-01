@@ -1,32 +1,37 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The application is based on hexagonal architecture (ports and adapters).
+
+![Hexagonal Architecture](https://blog.octo.com/hexagonal-architecture-three-principles-and-an-implementation-example/archi_hexa_en_06-1024x526.webp)
+
+## Tecnology stack
+
+- NodeJS: Server-side JavaScript code execution platform
+- NestJS: NodeJS framework for building scalable and maintainable applications
+- Docker: For container creation
+- Docker-compose: For container orchestration
+- Kafka: The events broker
+
+### Project structure
+
+- `src/adapters`: Adapter layer, contains the implementation of the ports defined in the application domain layer
+- `src/core/application`: Application layer, contains the application's services
+- `src/core/domain`: Domain layer, contains the application's entities and value objects
+- `docker-compose.yml`: Localstack and Postgres service orchestration file
 
 ## Project setup
+
+### Prerequisites
+
+- Docker and Docker-compose installed on the system. By default it is installed with Docker Desktop
+- NodeJS v22.13.1 (npm v10.9.2) installed on the system
+
+## Project setup
+
+You can run the application following typical NestJS and deply the complete stack with Docker compose
 
 ```bash
 $ npm install
@@ -51,62 +56,100 @@ $ npm run start:prod
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+The project has a [docker-compose.yml](docker-compose.yml) file that orchestrates the Localstack and Postgres services.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+To start the Localstack and Postgres services, run the following command:
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+docker-compose -p card-transactions-management up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+After running the command and Docker builds the images, you should see output similar to the following:
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-## Kafka consumers(suscribers)
-```text
-[Kafka Topic] --> [GameEventConsumer] --> [ProcessGameEventUseCase]
-                                                     |
-                                                     |---> [IdempotencyService]
-                                                     |        |
-                                                     |        |---> [RedisIdempotencyRepository]
-                                                     |
-                                                     |---> [NotificationService]
+```
+[+] Running 5/5
+ ✔ Network notifications-service_default  Created
+ ✔ Container redis                        Started
+ ✔ Container kafka                        Started
+ ✔ Container kafka-ui                     Started
+ ✔ Container notifications-service        Started
 ```
 
+## Example usage
 
+1. **Kafka** receives an event from one of the configured topics (`GAMING_PLAYER_LEVEL_UP_TOPIC`, `GAMING_PLAYER_ITEM_ACQUIRED_TOPIC`, `GAMING_PVP_TOPIC`, `GAMING_CHALLENGE_COMPLETED_TOPIC`).
+2. **Kafka Consumer** in the NestJS application consumes the event and sends it to the **GameEventController**.
+3. **GameEventController** receives the event and processes it in the corresponding method based on the topic.
+4. **GameEventController** delegates the processing of the event to the **Use Case** by calling `callSupportedUseCase`. The use cases follow the OCP principle of SOLID, allowing flexible integration of new validations in addition to the current idempotency validation with Redis.
+5. **Redis** is used to implement idempotency by maintaining a cache of processed events. Based on a message ID, duplicate events can be discarded.
+6. **Use Case** processes the business logic associated with the event.
+7. **Use Case** delegates the validation of notification preferences to the **Notification Service**.
+8. **Notification Service** retrieves and validates the user's notification preferences. Following the OCP principle of SOLID, the notification service can integrate new channels in a highly extensible manner without requiring structural changes.
+9. **Notification Service** sends notifications through the channels that the user has active (SMS, Email, Push).
+10. **GameEventController** confirms the receipt and processing of the event to **Kafka**.
+
+```plaintext
++-------+        +----------------+        +-------------------+        +-----------+        +-------------+        +-------------------+        +-------------------+        +-------+        +-------+
+| Kafka | -----> | Kafka Consumer | -----> | GameEventController | -----> | Use Case  | -----> | Redis       | -----> | Notification Service | -----> | Notification Prefs | -----> | Notification | -----> | Kafka |
++-------+        +----------------+        +-------------------+        +-----------+        +-------------+        +-------------------+        +-------------------+        +-------+        +-------+
+```
+
+### Description of the Updated Flow
+
+1. **Kafka**: The event is published to the corresponding topic.
+2. **Kafka Consumer**: The Kafka consumer in the NestJS application receives the event and sends it to the controller.
+3. **GameEventController**: The controller receives the event and processes it in the corresponding method based on the topic.
+4. **Use Case**: The controller delegates the business logic to the corresponding use case. The use cases follow the OCP principle of SOLID, allowing flexible integration of new validations in addition to the current idempotency validation with Redis.
+5. **Redis**: Redis is used to implement idempotency by maintaining a cache of processed events. Based on a message ID, duplicate events can be discarded.
+6. **Notification Service**: The use case delegates the validation of notification preferences to the notification service.
+7. **Notification Prefs**: The notification service retrieves and validates the user's notification preferences.
+8. **Notification**: The notification service sends the notifications through the active channels (SMS, Email, Push). Following the OCP principle of SOLID, the notification service can integrate new channels in a highly extensible manner without requiring structural changes.
+9. **Kafka**: Finally, the controller confirms to Kafka that the event has been processed correctly.
+
+## Testing de application
+
+Para propositos de pruebas utilizaremos la aplicacion **kafka-ui** la cual se despliegue con docker-compose. para interactuar con ella solo tienes que ir a tu navegador a la direccion http://localhost:8080
+
+![img.png](img.png)
+
+Desde esta interfaz podemos generar los eventos a los que reaccionara nuestra aplicacion. Para eso debemos ir a la seccion de Topics desde donde podemos ver la lista de topicos que estan  actualmente en Kafka
+
+![img_1.png](img_1.png)
+
+Ahora estamos listos para generar esos eventos. Recuerda que enunambiente de produccion, son las otras partes del sistema las que automaticamente generan los m,ensajes en los topicos para ser procesados!
+
+Selecciona un topico cualquiera y luego en el panel ir a la opcion de Produce Message
+
+![img_2.png](img_2.png)
+
+Ahora ya podemos generar nuestros mensajes
+
+![img_3.png](img_3.png)
+
+Aca [extracted_topics.json](extracted_topics.json) puedes encontrar los ejemplos de los mensajes de cada topic, pero empecemos por uno de manera rapida
+
+toma este ejemplo para el topico de `gaming.player.item.acquired`
+```json
+{
+  "messageId": "PffW7grm7P5yws9PMws8V",
+  "timestamp": "1740830925",
+  "userId": "1",
+  "itemName": "SwordOfAzeroth"
+}
+```
+podras ver los logs de la aplicacion entradas similares a esta
+
+```
+[Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [GameEventController] Event received: PffW7grm7P5yws9PMws8R timestamp: 1740830925
+2025-03-01T21:24:29.795382634Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [SMSNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+2025-03-01T21:24:29.795420384Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [EmailNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+2025-03-01T21:24:29.795425092Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [PushNotificationsChannel] Message You've acquired SwordOfAzeroth item sent
+2025-03-01T21:24:29.795432175Z [Nest] 1  - 03/01/2025, 9:24:29 PM     LOG [ItemAcquiredEventUseCase] Event PffW7grm7P5yws9PMws8R processed
+```
+Ten en cuenta que en la base de datos dummy(un mapa en memoria de la aplicacion) se encuentran registradas la preferencias de notificacion de 3 usuarios. Cada uno tiene sus propios canales activos(SMS, PUSH. Email). De acuerdo a estas configuracion la aplicacion decidira que canales activar para el envio simulado de estas notificaciones
