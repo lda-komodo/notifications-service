@@ -10,10 +10,11 @@ export const SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC =
   'social.friend.request.accepted';
 export const SOCIAL_NEW_FOLLOWER_TOPIC = 'social.new.follower';
 
-export default registerAs('kafka', () => ({
-  brokers: process.env.KAFKA_BROKERS?.split(',') || ['kakfa:9092'],
-  groupId: process.env.KAFKA_GROUP_ID || 'game-events-consumer',
-  clientId: process.env.KAFKA_CLIENT_ID || 'game-notifier',
-  retries: parseInt(process.env.KAFKA_RETRIES ?? '5', 10),
-  requestTimeout: parseInt(process.env.KAFKA_REQUEST_TIMEOUT ?? '5000', 10),
+export default registerAs('kafka-cfg', () => ({
+  brokers: process.env.KAFKA_URLS ? process.env.KAFKA_URLS.split(',') : ['localhost:9092'],
+  groupId: process.env.KAFKA_GROUP_ID ? process.env.KAFKA_GROUP_ID : 'game-events-consumer',
+  clientId: process.env.KAFKA_CLIENT_ID ? process.env.KAFKA_CLIENT_ID : 'game-notifier',
+  retries: parseInt(process.env.KAFKA_RETRIES ? process.env.KAFKA_RETRIES : '5'),
+  requestTimeout: parseInt(process.env.KAFKA_RETRIES ? process.env.KAFKA_RETRIES : '5000'),
 }));
+
