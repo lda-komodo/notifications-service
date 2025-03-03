@@ -1,10 +1,10 @@
 import {
   EventValidationServiceInterface
 } from '../src/core/domain/services/interfaces/events-validation.service.interface';
-import { BaseEvent } from '../src/core/domain/events/types';
+import { BaseEventPayload } from '../src/core/domain/events/events-payloads';
 import { NotificationServiceInterface } from '../src/core/domain/services/interfaces/notifications-service.interface';
 
-export class MockEventValidationService implements EventValidationServiceInterface<BaseEvent> {
+export class MockEventValidationService implements EventValidationServiceInterface<BaseEventPayload> {
   shouldProcess = jest.fn().mockResolvedValue(true);
 }
 

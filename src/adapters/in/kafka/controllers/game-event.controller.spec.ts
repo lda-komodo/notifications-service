@@ -5,8 +5,8 @@ import {
   GAMING_PLAYER_ITEM_ACQUIRED_TOPIC,
   GAMING_PLAYER_LEVEL_UP_TOPIC,
   GAMING_PVP_TOPIC,
-} from '../../../../shared/config/kafka.config';
-import { BaseEvent } from '../../../../core/domain/events/types';
+} from '../../../../infrastructure/kafka/kafka.config';
+import { BaseEventPayload } from '../../../../core/domain/events/events-payloads';
 import { DomainModuleInjectionTokens } from '../../../../core/domain/domain.module';
 import { ProcessEventInterface } from '../../../../core/domain/ports/in/process-event.interface';
 import {
@@ -19,7 +19,7 @@ import { controllersProviders } from '../../../../../___MOCKS___/providers.mocks
 
 describe('GameEventConsumer', () => {
   let consumer: GameEventController;
-  let useCases: ProcessEventInterface<BaseEvent>[];
+  let useCases: ProcessEventInterface<BaseEventPayload>[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

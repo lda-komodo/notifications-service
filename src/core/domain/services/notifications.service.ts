@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { NotificationServiceInterface } from './interfaces/notifications-service.interface';
-import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out.module';
+import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out-adapters.module';
 import { NotificationChannelInterface } from '../ports/out/notification-channel.interface';
 import { NotificationPreferencesRepositoryInterface } from '../ports/out/notification-preferences.repository.interface';
 import { NotificationPreferencesStatusEnum } from '../entities/notifications.enum';
@@ -11,7 +11,7 @@ export class NotificationService implements NotificationServiceInterface {
 
   constructor(
     @Inject(OutAdapterModuleInjectionTokens.NOTIFICATION_CHANNELS)
-    private readonly notificationsChannels: NotificationChannelInterface[],
+    private readonly notificationsChannels: NotificationChannelInterface<string, string>[],
     @Inject(
       OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
     )

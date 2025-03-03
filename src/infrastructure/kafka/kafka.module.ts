@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import kafkaConfig from '../../shared/config/kafka.config';
+import kafkaConfig from './kafka.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
 import { Partitioners } from 'kafkajs';
@@ -14,16 +14,16 @@ import { Partitioners } from 'kafkajs';
           transport: Transport.KAFKA,
           options: {
             client: {
-              brokers: configService.get<string[]>('kafka.brokers'),
-              clientId: configService.get<string>('kafka.clientId'),
+              brokers: configService.get<string[]>('kafka-cfg.brokers'),
+              clientId: configService.get<string>('kafka-cfg.clientId'),
               retry: {
-                retries: configService.get<number>('kafka.retries'),
+                retries: configService.get<number>('kafka-cfg.retries'),
                 factor: 2,
               },
               connectionTimeout: 3000,
             },
             consumer: {
-              groupId: configService.get<string>('kafka.groupId'),
+              groupId: configService.get<string>('kafka-cfg.groupId'),
               allowAutoTopicCreation: true,
             },
             producer: {

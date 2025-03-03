@@ -10,7 +10,7 @@ export class MockProcessedEventsRepository implements ProcessedEventsRepositoryI
   save = jest.fn();
 }
 
-export class MockEmailNotificationChannel implements NotificationChannelInterface {
+export class MockEmailNotificationChannel implements NotificationChannelInterface<string, string> {
   notificationChannel = NotificationPreferencesChannelNamesEnum.EMAIL;
   send = jest.fn().mockResolvedValue(undefined);
 }
