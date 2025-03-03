@@ -6,8 +6,8 @@ services:
       KAFKA_URLS: "kafka:19092"
       KAFKA_GROUP_ID: game-events-consumer
       KAFKA_CLIENT_ID: game-notifier
-      KAFKA_RETRIES: 5
-      KAFKA_REQUEST_TIMEOUT: 5000
+      KAFKA_RETRIES: 3
+      KAFKA_REQUEST_TIMEOUT: 3000
       REDIS_HOST: redis
       REDIS_PORT: 6379
     restart:
