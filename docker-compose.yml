@@ -14,8 +14,6 @@ services:
       on-failure:3
     build:
       context: .
-    ports:
-      - '3001:3000'
     depends_on:
       - redis
       - kafka

@@ -24,7 +24,7 @@ import { v4 as uuidv4 } from 'uuid';
               connectionTimeout: 3000,
             },
             consumer: {
-              groupId: configService.get<string>('kafka-cfg.groupId') + `-${uuidv4()}`,
+              groupId: configService.get<string>('kafka-cfg.groupId'),
               allowAutoTopicCreation: true,
             },
             producer: {
