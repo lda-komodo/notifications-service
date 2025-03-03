@@ -4,10 +4,10 @@ import { EventValidationServiceInterface } from '../../domain/services/interface
 import { DomainModuleInjectionTokens } from '../../domain/domain.module';
 import { NotificationServiceInterface } from '../../domain/services/interfaces/notifications-service.interface';
 import { EventType } from '../../domain/events/event-type.enum';
-import { BaseEvent } from '../../domain/events/types';
+import { BaseEventPayload } from '../../domain/events/events-payloads';
 
 @Injectable()
-export abstract class BaseEventUseCase<T extends BaseEvent>
+export abstract class BaseEventUseCase<T extends BaseEventPayload>
   implements ProcessEventInterface<T>
 {
   protected readonly logger = new Logger(this.constructor.name);

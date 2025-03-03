@@ -1,55 +1,60 @@
 import {
-  BaseEvent,
-  GameChallengeCompletedEvent,
-  GameItemAcquiredEvent,
-  GameLevelUpEvent,
-  GamePvPEvent, SocialFriendRequestAcceptedEvent, SocialFriendRequestEvent, SocialNewFollowerEvent,
-} from '../src/core/domain/events/types';
+  BaseEventPayload,
+  BaseSocialEventPayload,
+  GameChallengeCompletedEventPayload,
+  GameItemAcquiredEventPayload,
+  GameLevelUpEventPayload,
+  GamePvPEventPayload,
+} from '../src/core/domain/events/events-payloads';
 
-export const baseEventMock: BaseEvent = { timestamp: '1740847010', messageId: '43BFbY6vBExYsvGhcTuw3', userId: 'user123' };
+export const baseEventMock: BaseEventPayload = {
+  timestamp: '1740847010',
+  messageId: '43BFbY6vBExYsvGhcTuw3',
+  userId: 'user123',
+};
 
-export const gameLevelUpEventMock: GameLevelUpEvent = {
+export const gameLevelUpEventMock: GameLevelUpEventPayload = {
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987',
   newLevel: 15,
 };
-export const gameItemAcquiredEventMock: GameItemAcquiredEvent = {
+export const gameItemAcquiredEventMock: GameItemAcquiredEventPayload = {
   itemName: 'SuperItem',
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
 };
 
-export const gameChallengeCompletedEventMock: GameChallengeCompletedEvent = {
+export const gameChallengeCompletedEventMock: GameChallengeCompletedEventPayload = {
   challenge: 'Kill the Dragon',
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
 };
 
-export const gamePvPEventMock: GamePvPEvent = {
+export const gamePvPEventMock: GamePvPEventPayload = {
   vsUser: 8,
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
 };
 
-export const socialNewFollowerEventMock: SocialNewFollowerEvent = {
+export const socialNewFollowerEventMock: BaseSocialEventPayload = {
   fromUserId: '10',
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
 };
 
-export const socialFriendRequestEventMock: SocialFriendRequestEvent = {
+export const socialFriendRequestEventMock: BaseSocialEventPayload = {
   fromUserId: '10',
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
 };
 
-export const socialFriendRequestAcceptedEventEventMock: SocialFriendRequestAcceptedEvent = {
+export const socialFriendRequestAcceptedEventEventMock: BaseSocialEventPayload = {
   fromUserId: '10',
   userId: '123456',
   messageId: '987654321',

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BaseEvent } from '../../../../core/domain/events/types';
+import { BaseEventPayload } from '../../../../core/domain/events/events-payloads';
 import { DomainModuleInjectionTokens } from '../../../../core/domain/domain.module';
 import { ProcessEventInterface } from '../../../../core/domain/ports/in/process-event.interface';
 import { SocialEventController } from './social-event.controller';
@@ -17,7 +17,7 @@ import {
 
 describe('GameEventConsumer', () => {
   let socialEventController: SocialEventController;
-  let useCases: ProcessEventInterface<BaseEvent>[];
+  let useCases: ProcessEventInterface<BaseEventPayload>[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import {
   SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC,
   SOCIAL_FRIEND_REQUEST_TOPIC,
@@ -7,16 +7,13 @@ import {
 } from '../../../../shared/config/kafka.config';
 import { BaseEventController } from './base-event.controller';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
-import {
-  SocialFriendRequestAcceptedEvent,
-  SocialFriendRequestEvent,
-} from '../../../../core/domain/events/types';
+import { BaseSocialEventPayload } from '../../../../core/domain/events/events-payloads';
 
 @Controller('social-event.consumer')
 export class SocialEventController extends BaseEventController {
-  @MessagePattern(SOCIAL_FRIEND_REQUEST_TOPIC)
+  @EventPattern(SOCIAL_FRIEND_REQUEST_TOPIC)
   async handleFriendRequestTopicMessage(
-    @Payload() event: SocialFriendRequestEvent,
+    @Payload() event: BaseSocialEventPayload,
   ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
@@ -27,9 +24,9 @@ export class SocialEventController extends BaseEventController {
     );
   }
 
-  @MessagePattern(SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC)
+  @EventPattern(SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC)
   async handleFriendRequestAcceptedTopicMessage(
-    @Payload() event: SocialFriendRequestAcceptedEvent,
+    @Payload() event: BaseSocialEventPayload,
   ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
@@ -40,9 +37,9 @@ export class SocialEventController extends BaseEventController {
     );
   }
 
-  @MessagePattern(SOCIAL_NEW_FOLLOWER_TOPIC)
+  @EventPattern(SOCIAL_NEW_FOLLOWER_TOPIC)
   async handleNewFollowerTopicMessage(
-    @Payload() event: SocialFriendRequestAcceptedEvent,
+    @Payload() event: BaseSocialEventPayload,
   ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,

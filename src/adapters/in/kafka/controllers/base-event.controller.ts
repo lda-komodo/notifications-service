@@ -1,5 +1,5 @@
 import { Controller, Inject, Logger } from '@nestjs/common';
-import { BaseEvent } from '../../../../core/domain/events/types';
+import { BaseEventPayload } from '../../../../core/domain/events/events-payloads';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
 import { DomainModuleInjectionTokens } from '../../../../core/domain/domain.module';
 import { ProcessEventInterface } from '../../../../core/domain/ports/in/process-event.interface';
@@ -10,11 +10,11 @@ export abstract class BaseEventController {
 
   constructor(
     @Inject(DomainModuleInjectionTokens.EVENT_PROCESSORS)
-    protected readonly eventUseCaseProcessors: ProcessEventInterface<BaseEvent>[],
+    protected readonly eventUseCaseProcessors: ProcessEventInterface<BaseEventPayload>[],
   ) {}
 
   protected async callSupportedUseCase(
-    gameLevelUpEvent: BaseEvent,
+    gameLevelUpEvent: BaseEventPayload,
     eventYpe: EventType,
   ): Promise<void> {
     const processor = this.eventUseCaseProcessors.find((p) =>
