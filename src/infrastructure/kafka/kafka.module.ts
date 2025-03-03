@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import kafkaConfig from '../../shared/config/kafka.config';
+import kafkaConfig from './kafka.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
 import { Partitioners } from 'kafkajs';

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotificationService } from './notifications.service';
-import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out.module';
+import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out-adapters.module';
 import { NotificationPreferencesStatusEnum } from '../entities/notifications.enum';
 import {
   MockEmailNotificationChannel,

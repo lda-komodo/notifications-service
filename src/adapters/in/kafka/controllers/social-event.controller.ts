@@ -4,7 +4,7 @@ import {
   SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC,
   SOCIAL_FRIEND_REQUEST_TOPIC,
   SOCIAL_NEW_FOLLOWER_TOPIC,
-} from '../../../../shared/config/kafka.config';
+} from '../../../../infrastructure/kafka/kafka.config';
 import { BaseEventController } from './base-event.controller';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
 import { BaseSocialEventPayload } from '../../../../core/domain/events/events-payloads';

@@ -5,7 +5,7 @@ import {
   GAMING_PLAYER_ITEM_ACQUIRED_TOPIC,
   GAMING_PLAYER_LEVEL_UP_TOPIC,
   GAMING_PVP_TOPIC,
-} from '../../../../shared/config/kafka.config';
+} from '../../../../infrastructure/kafka/kafka.config';
 import { BaseEventPayload } from '../../../../core/domain/events/events-payloads';
 import { DomainModuleInjectionTokens } from '../../../../core/domain/domain.module';
 import { ProcessEventInterface } from '../../../../core/domain/ports/in/process-event.interface';

@@ -6,7 +6,7 @@ import {
   GAMING_PLAYER_ITEM_ACQUIRED_TOPIC,
   GAMING_PLAYER_LEVEL_UP_TOPIC,
   GAMING_PVP_TOPIC,
-} from '../../../../shared/config/kafka.config';
+} from '../../../../infrastructure/kafka/kafka.config';
 import { BaseEventController } from './base-event.controller';
 import {
   GameChallengeCompletedEventPayload,

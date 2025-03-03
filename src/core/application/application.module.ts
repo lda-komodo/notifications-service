@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LevelUpEventUseCase } from './use-cases/level-up-event.use-case';
-import { OutAdaptersModule } from '../../adapters/out/out.module';
+import { OutAdaptersModule } from '../../adapters/out/out-adapters.module';
 import {
   DomainModule,
   DomainModuleInjectionTokens,

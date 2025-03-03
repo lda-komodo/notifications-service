@@ -13,7 +13,7 @@ import {
   SOCIAL_FRIEND_REQUEST_ACCEPTED_TOPIC,
   SOCIAL_FRIEND_REQUEST_TOPIC,
   SOCIAL_NEW_FOLLOWER_TOPIC,
-} from '../../../../shared/config/kafka.config';
+} from '../../../../infrastructure/kafka/kafka.config';
 
 describe('GameEventConsumer', () => {
   let socialEventController: SocialEventController;

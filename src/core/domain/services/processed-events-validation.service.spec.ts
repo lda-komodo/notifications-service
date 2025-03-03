@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProcessedEventsValidationService } from './processed-events-validation.service';
-import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out.module';
+import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out-adapters.module';
 import { BusinessException } from '../exceptions/business.exception';
 import { baseEventMock } from '../../../../___MOCKS___/game-events.mocks';
 import { MockProcessedEventsRepository } from '../../../../___MOCKS___/adapters.mocks';

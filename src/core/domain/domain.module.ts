@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProcessedEventsValidationService } from './services/processed-events-validation.service';
 import { NotificationService } from './services/notifications.service';
-import { OutAdaptersModule } from '../../adapters/out/out.module';
+import { OutAdaptersModule } from '../../adapters/out/out-adapters.module';
 
 export enum DomainModuleInjectionTokens {
   PROCESS_LEVEL_UP_EVENT_INTERFACE = 'PROCESS_LEVEL_UP_EVENT_INTERFACE',

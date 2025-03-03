@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ProcessedEventsRepositoryInterface } from '../ports/out/processed-events.repository.interface';
 import { EventValidationServiceInterface } from './interfaces/events-validation.service.interface';
 import { BaseEventPayload } from '../events/events-payloads';
-import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out.module';
+import { OutAdapterModuleInjectionTokens } from '../../../adapters/out/out-adapters.module';
 import { BusinessException } from '../exceptions/business.exception';
 
 @Injectable()
