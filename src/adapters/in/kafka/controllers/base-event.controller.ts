@@ -1,4 +1,11 @@
-import { Controller, Inject, Logger, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Inject,
+  Logger,
+  UseFilters,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { BaseEventPayload } from '../../../../core/domain/events/events-payloads';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
 import { DomainModuleInjectionTokens } from '../../../../core/domain/domain.module';

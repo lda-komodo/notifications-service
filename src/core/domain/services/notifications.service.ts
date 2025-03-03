@@ -11,7 +11,7 @@ export class NotificationService implements NotificationServiceInterface {
 
   constructor(
     @Inject(OutAdapterModuleInjectionTokens.NOTIFICATION_CHANNELS)
-    private readonly notificationsChannels: NotificationChannelInterface[],
+    private readonly notificationsChannels: NotificationChannelInterface<string, string>[],
     @Inject(
       OutAdapterModuleInjectionTokens.NOTIFICATIONS_PREFERENCES_REPOSITORY,
     )

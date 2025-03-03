@@ -24,6 +24,8 @@ export default registerAs('kafka-cfg', () => ({
     process.env.KAFKA_RETRIES ? process.env.KAFKA_RETRIES : '5',
   ),
   requestTimeout: parseInt(
-    process.env.KAFKA_REQUEST_TIMEOUT ? process.env.KAFKA_REQUEST_TIMEOUT : '5000',
+    process.env.KAFKA_REQUEST_TIMEOUT
+      ? process.env.KAFKA_REQUEST_TIMEOUT
+      : '5000',
   ),
 }));

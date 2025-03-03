@@ -1,6 +1,11 @@
 // adapters/in/kafka/game-event.consumer.ts
 import { Controller } from '@nestjs/common';
-import { Ctx, EventPattern, KafkaContext, Payload } from '@nestjs/microservices';
+import {
+  Ctx,
+  EventPattern,
+  KafkaContext,
+  Payload,
+} from '@nestjs/microservices';
 import {
   GAMING_CHALLENGE_COMPLETED_TOPIC,
   GAMING_PLAYER_ITEM_ACQUIRED_TOPIC,
