@@ -1,6 +1,6 @@
 // adapters/in/kafka/game-event.consumer.ts
-import { Controller, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
-import { EventPattern, Payload } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
+import { Ctx, EventPattern, KafkaContext, Payload } from '@nestjs/microservices';
 import {
   GAMING_CHALLENGE_COMPLETED_TOPIC,
   GAMING_PLAYER_ITEM_ACQUIRED_TOPIC,
@@ -15,22 +15,16 @@ import {
   GamePvPEventPayload,
 } from '../../../../core/domain/events/events-payloads';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
-import { ValidationExceptionFilter } from '../../../exceptions/filters/validation-exception.filter';
 
 @Controller()
-@UsePipes(new ValidationPipe({
-  transform: true,
-  enableDebugMessages: true
-}))
-@UseFilters(new ValidationExceptionFilter())
 export class GameEventController extends BaseEventController {
-
   @EventPattern(GAMING_PLAYER_LEVEL_UP_TOPIC)
   async handlePlayerLevelUpTopicMessage(
     @Payload() event: GameLevelUpEventPayload,
+    @Ctx() kafkaContext?: KafkaContext,
   ): Promise<void> {
     this.logger.log(
-      `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
+      `Event received: ${event.messageId} broker-id: ${kafkaContext?.getMessage().key} timestamp: ${event.timestamp} broker-timestamp: ${kafkaContext?.getMessage().timestamp}`,
     );
     return await this.callSupportedUseCase(event, EventType.PLAYER_LEVEL_UP);
   }
@@ -49,7 +43,9 @@ export class GameEventController extends BaseEventController {
   }
 
   @EventPattern(GAMING_PVP_TOPIC)
-  async handlePvPTopicMessage(@Payload() event: GamePvPEventPayload): Promise<void> {
+  async handlePvPTopicMessage(
+    @Payload() event: GamePvPEventPayload,
+  ): Promise<void> {
     this.logger.log(
       `Event received: ${event.messageId} timestamp: ${event.timestamp}`,
     );

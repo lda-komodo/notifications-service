@@ -21,7 +21,7 @@ describe('KafkaConfig', () => {
   let moduleRef: TestingModule;
 
   beforeEach(async () => {
-    process.env.KAFKA_BROKERS = 'localhost:9092';
+    process.env.KAFKA_URLS = 'localhost:9092';
     process.env.KAFKA_GROUP_ID = 'test-group';
     process.env.KAFKA_CLIENT_ID = 'test-client';
     process.env.KAFKA_RETRIES = '3';
@@ -44,23 +44,23 @@ describe('KafkaConfig', () => {
   });
 
   it('should load Kafka brokers from environment variables', () => {
-    expect(configService.get('kafka.brokers')).toEqual(['localhost:9092']);
+    expect(configService.get('kafka-cfg.brokers')).toEqual(['localhost:9092']);
   });
 
   it('should load Kafka groupId from environment variables', () => {
-    expect(configService.get('kafka.groupId')).toEqual('test-group');
+    expect(configService.get('kafka-cfg.groupId')).toEqual('test-group');
   });
 
   it('should load Kafka clientId from environment variables', () => {
-    expect(configService.get('kafka.clientId')).toEqual('test-client');
+    expect(configService.get('kafka-cfg.clientId')).toEqual('test-client');
   });
 
   it('should load Kafka retries from environment variables', () => {
-    expect(configService.get('kafka.retries')).toEqual(3);
+    expect(configService.get('kafka-cfg.retries')).toEqual(3);
   });
 
   it('should load Kafka requestTimeout from environment variables', () => {
-    expect(configService.get('kafka.requestTimeout')).toEqual(15000);
+    expect(configService.get('kafka-cfg.requestTimeout')).toEqual(15000);
   });
 
   it('should register Kafka client with ClientsModule', () => {

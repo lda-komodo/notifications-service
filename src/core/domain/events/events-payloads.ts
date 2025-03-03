@@ -13,7 +13,7 @@ export class BaseEventPayload {
 
 export class GameLevelUpEventPayload extends BaseEventPayload {
   @IsNotEmpty()
-  newLevel: number
+  newLevel: number;
 }
 
 export class GameItemAcquiredEventPayload extends BaseEventPayload {
@@ -35,4 +35,3 @@ export class BaseSocialEventPayload extends BaseEventPayload {
   @IsNotEmpty()
   fromUserId: string;
 }
-
