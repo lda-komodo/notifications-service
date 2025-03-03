@@ -17,6 +17,7 @@ export abstract class BaseEventController {
     gameLevelUpEvent: BaseEventPayload,
     eventYpe: EventType,
   ): Promise<void> {
+    this.logger.debug(`Looking for a processor: ${JSON.stringify(gameLevelUpEvent)}`);
     const processor = this.eventUseCaseProcessors.find((p) =>
       p.supports(eventYpe),
     );

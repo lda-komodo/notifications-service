@@ -45,7 +45,7 @@ describe('PlayerVsPlayerEventUseCase', () => {
       MessageTemplates[EventType.PVP].generateMessage,
     ).toHaveBeenCalledWith({
       userName: gamePvPEventMock.userId,
-      vsUser: gamePvPEventMock.vsUser,
+      vsUser: gamePvPEventMock.vsUserId,
     });
   });
 });

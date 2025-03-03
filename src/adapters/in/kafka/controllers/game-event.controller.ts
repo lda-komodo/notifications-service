@@ -1,5 +1,5 @@
 // adapters/in/kafka/game-event.consumer.ts
-import { Controller } from '@nestjs/common';
+import { Controller, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
 import {
   GAMING_CHALLENGE_COMPLETED_TOPIC,
@@ -15,9 +15,16 @@ import {
   GamePvPEventPayload,
 } from '../../../../core/domain/events/events-payloads';
 import { EventType } from '../../../../core/domain/events/event-type.enum';
+import { ValidationExceptionFilter } from '../../../exceptions/filters/validation-exception.filter';
 
 @Controller()
+@UsePipes(new ValidationPipe({
+  transform: true,
+  enableDebugMessages: true
+}))
+@UseFilters(new ValidationExceptionFilter())
 export class GameEventController extends BaseEventController {
+
   @EventPattern(GAMING_PLAYER_LEVEL_UP_TOPIC)
   async handlePlayerLevelUpTopicMessage(
     @Payload() event: GameLevelUpEventPayload,

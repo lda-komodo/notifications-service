@@ -13,7 +13,7 @@ export class PlayerVsPlayerEventUseCase extends BaseEventUseCase<GamePvPEventPay
   getMessageTemplate(event: GamePvPEventPayload): string {
     return MessageTemplates[EventType.PVP].generateMessage({
       userName: event.userId,
-      vsUser: event.vsUser,
+      vsUser: event.vsUserId,
     });
   }
 }

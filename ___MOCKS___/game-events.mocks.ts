@@ -34,7 +34,7 @@ export const gameChallengeCompletedEventMock: GameChallengeCompletedEventPayload
 };
 
 export const gamePvPEventMock: GamePvPEventPayload = {
-  vsUser: 8,
+  vsUserId: "8",
   userId: '123456',
   messageId: '987654321',
   timestamp: '1721654987'
