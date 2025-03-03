@@ -3,7 +3,6 @@ import kafkaConfig from './kafka.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
 import { Partitioners } from 'kafkajs';
-import { v4 as uuidv4 } from 'uuid';
 
 @Module({
   imports: [ConfigModule.forRoot({ load: [kafkaConfig] })],
@@ -22,6 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
                 factor: 2,
               },
               connectionTimeout: 3000,
+
             },
             consumer: {
               groupId: configService.get<string>('kafka-cfg.groupId'),
